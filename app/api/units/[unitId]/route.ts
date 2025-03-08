@@ -6,14 +6,14 @@ import { NextResponse } from "next/server";
 
 export const GET = async (
     req: Request,
-    { params } : { params: { unitId: number } },
+    { params } : { params: Promise<{ unitId: number }> },
 ) => {
     if(!getIsAdmin()){
         return new NextResponse("Unauthorized", { status: 403});
     }
-
+    const cId = (await params).unitId;
     const data = await db.query.units.findFirst({
-        where: eq(units.id, params.unitId),
+        where: eq(units.id, cId),
     });
 
 
@@ -22,16 +22,17 @@ export const GET = async (
 
 export const PUT = async (
     req: Request,
-    { params } : { params: { unitId: number } },
+    { params } : { params: Promise<{ unitId: number }> },
 ) => {
     if(!getIsAdmin()){
         return new NextResponse("Unauthorized", { status: 403});
     }
 
+    const cId = (await params).unitId;
     const body = await req.json();
     const data = await db.update(units).set({
         ...body,
-    }).where(eq(units.id, params.unitId)).returning();
+    }).where(eq(units.id, cId)).returning();
 
 
     return NextResponse.json(data[0]);
@@ -39,13 +40,14 @@ export const PUT = async (
 
 export const DELETE = async (
     req: Request,
-    { params } : { params: { unitId: number } },
+    { params } : { params: Promise<{ unitId: number }> },
 ) => {
     if(!getIsAdmin()){
         return new NextResponse("Unauthorized", { status: 403});
     }
 
-    const data = await db.delete(units).where(eq(units.id, params.unitId)).returning();
+    const cId = (await params).unitId;
+    const data = await db.delete(units).where(eq(units.id, cId)).returning();
 
     return NextResponse.json(data[0]);
 }

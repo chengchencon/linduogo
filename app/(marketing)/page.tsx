@@ -23,8 +23,7 @@ export default function Home() {
             <SignedOut>
               <SignUpButton
                 mode="modal"
-                afterSignInUrl="/learn"
-                afterSignUpUrl="/learn"
+                fallbackRedirectUrl="/learn"
               >
                 <Button size="lg" variant="secondary"  className="w-full">
                   Get Started
@@ -33,8 +32,7 @@ export default function Home() {
 
               <SignInButton
                 mode="modal"
-                afterSignInUrl="/learn"
-                afterSignUpUrl="/learn"
+                forceRedirectUrl="/learn"
               >
                 <Button size="lg" variant="primaryOutline" className="w-full">
                   I already have an account

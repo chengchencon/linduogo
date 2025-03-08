@@ -6,14 +6,15 @@ import { NextResponse } from "next/server";
 
 export const GET = async (
     req: Request,
-    { params } : { params: { challengeId: number } },
+    { params } : { params: Promise<{ challengeId: number }> },
 ) => {
     if(!getIsAdmin()){
         return new NextResponse("Unauthorized", { status: 403});
     }
 
+    const cId = (await params).challengeId;
     const data = await db.query.challenges.findFirst({
-        where: eq(challenges.id, params.challengeId),
+        where: eq(challenges.id, cId),
     });
 
 
@@ -22,16 +23,17 @@ export const GET = async (
 
 export const PUT = async (
     req: Request,
-    { params } : { params: { challengeId: number } },
+    { params } : { params: Promise<{ challengeId: number }> },
 ) => {
     if(!getIsAdmin()){
         return new NextResponse("Unauthorized", { status: 403});
     }
 
+    const cId = (await params).challengeId;
     const body = await req.json();
     const data = await db.update(challenges).set({
         ...body,
-    }).where(eq(challenges.id, params.challengeId)).returning();
+    }).where(eq(challenges.id, cId)).returning();
 
 
     return NextResponse.json(data[0]);
@@ -39,13 +41,15 @@ export const PUT = async (
 
 export const DELETE = async (
     req: Request,
-    { params } : { params: { challengeId: number } },
+    { params } : { params: Promise<{ challengeId: number }> },
 ) => {
+
+    const cId = (await params).challengeId;
     if(!getIsAdmin()){
         return new NextResponse("Unauthorized", { status: 403});
     }
 
-    const data = await db.delete(challenges).where(eq(challenges.id, params.challengeId)).returning();
+    const data = await db.delete(challenges).where(eq(challenges.id, cId)).returning();
 
     return NextResponse.json(data[0]);
 }

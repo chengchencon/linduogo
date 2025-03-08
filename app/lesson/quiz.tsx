@@ -53,11 +53,14 @@ export const Quiz = ({
     const [finishAudio] = useAudio({ src: "/finish.mp3", autoPlay: true});
     const [
         correctAudio,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         _c,
         correctControls,
     ] = useAudio({ src:"/correct.wav"});
+    
     const [
         incorrectAudio,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         _i,
         incorrectControls,
     ] = useAudio({ src:"/incorrect.wav"});

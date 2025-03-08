@@ -14,13 +14,16 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { usePracticeModal } from "@/store/use-practice-modal";
+import { useRouter } from "next/navigation";
 
 export const PracticeModal = () => {
     const [isClient, setIsClient] = useState(false);
     const { isOpen, close } = usePracticeModal();
 
     useEffect(() => setIsClient(true), []);
+    const router = useRouter();
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const onClick = () => {
         close();
         router.push("/store");

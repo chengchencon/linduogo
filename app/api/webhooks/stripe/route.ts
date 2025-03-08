@@ -1,7 +1,7 @@
 import db from "@/db/drizzle";
 import { userSubscription } from "@/db/schema";
 import { stripe } from "@/lib/stripe";
-import { headers } from "next/headers";
+// import { headers } from "next/headers";
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { eq } from "drizzle-orm";
@@ -23,6 +23,7 @@ export async function POST(req: Request){
         );
         console.log("event is");
     console.log(event.type);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     }catch(error: any){
         return new NextResponse(`Webhook error: ${error.message}`,
             {
