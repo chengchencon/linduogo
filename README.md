@@ -16,6 +16,37 @@
 
 ---
 
+---
+
+## 📸 Screenshots
+
+### 🏠 Homepage
+
+![Homepage Screenshot](./public/screenshots/homepage.png)
+
+*Landing page with vocabulary and reading options.*
+
+### 📚 Course Page
+
+![Course Page Screenshot](./public/screenshots/course.png)
+
+*Overview of available language courses.*
+
+### 📝 Exercise Page
+
+![Exercise Page Screenshot](./public/screenshots/exercise.png)
+
+*Interactive vocabulary practice with real-time feedback.*
+
+### 💳 Payment Page
+
+![Payment Page Screenshot](./public/screenshots/payment.png)
+
+*Secure payment interface for course subscriptions.*
+
+---
+
+
 ## 🧠 Tech Stack
 
 - **Frontend**: Next.js 14, React, Tailwind CSS
