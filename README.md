@@ -45,7 +45,11 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ### 📦 Installation
 
+Clone this repository and install the required dependencies.
+
 ```bash
+git clone https://github.com/chengchencon/linduogo.git
+cd linduogo
 npm install
 # or
 yarn install
